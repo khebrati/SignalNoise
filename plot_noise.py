@@ -1,14 +1,13 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from my_signal import signal
+from my_noise import normal_distribution
 
+mean_value = 5
+standard_devation = 4
 
-frequency = 1e6  # 1 Mbps
-V = 5
-
-
-t_values = np.linspace(0, 10e-6, 1000) 
-signal_values = [signal(V, frequency).subs('t', t_val) for t_val in t_values]
+t_values = np.linspace(-10, 20, 1000)
+signal_values = [normal_distribution(mean_value, standard_devation).subs('t', t_val) for t_val in t_values]
 
 
 plt.figure(figsize=(10, 6))

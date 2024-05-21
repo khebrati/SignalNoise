@@ -4,13 +4,13 @@ import sympy as sp
 from sympy import symbols, floor
 import matplotlib.pyplot as plt
 import numpy as np
-from transmitter import signal
+from my_signal import signal
 # Define the frequency and V values
 frequency = 1e6  # 1 Mbps
 V = 5
 
 # Generate the signal
-t_values = np.linspace(0, 1e-6, 1000)  # 1000 points in one microsecond
+t_values = np.linspace(0, 10e-6, 1000)  # 1000 points in one microsecond
 signal_values = [signal(V, frequency).subs('t', t_val) for t_val in t_values]
 
 # Plot the signal

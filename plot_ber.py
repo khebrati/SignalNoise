@@ -9,6 +9,7 @@ total_points = 200 * period_count
 frequency = 1e6
 mean_value = 0
 standard_deviation = 1
+# from 0.1 to 0.3 takes : 5 min
 v_values = np.arange(0.1, 2.1, 0.1)
 bandwidth = float('inf')
 signal_t_points = np.linspace(0, period_count/frequency, total_points).tolist()

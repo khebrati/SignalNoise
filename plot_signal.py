@@ -7,7 +7,7 @@ period_count = 10
 total_points = 200 * period_count
 frequency = 1e6
 v = 5
-# 3 : 1min
+# 2 : 1min, 3 : 1.30 min, 4 : 2 min 
 bandwidth = float('inf')
 signal_t_points = np.linspace(0, period_count/frequency, total_points).tolist()
 signal_values = getSignalValues(v,frequency,signal_t_points,bandwidth)

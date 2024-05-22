@@ -8,6 +8,7 @@ period_count = 10
 total_points = 200 * period_count
 frequency = 1e6
 v = 5
+# 2 : 40s, 3 : 1min, 4: 1.30min
 bandwidth = float('inf')
 mean_value = 0
 standard_deviation = 1

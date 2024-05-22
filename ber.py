@@ -1,9 +1,9 @@
 import math
-
 import numpy as np
-
 from my_channel import channel
-from my_signal import signal
+from my_signal import getSignalValues
+
+
 def getSamplingPoints(signal_t_points :list, period_count : int):
     points_in_period = len(signal_t_points) / period_count
     index = int(math.ceil(points_in_period)/4)
@@ -29,16 +29,20 @@ def ber(signal_t_points : list,signal_values : list,noised_signal : list,period_
         elif(signal_values[s] < 0):
             if(noised_signal[s] > 0):
                 error_count += 1
-        print("error count is ",error_count)                     
-            
+        print("error count is ",error_count)
     return error_count/len(sampling_points)
 
 
 
 period_count = 10
 # number of points (2000 here) must be divided by period_count
-total_points = 2000
+total_points = 200 * period_count
 frequency = 1e6
+v = 1
+mean_value = 0
+standard_deviation = 1
 signal_t_points = np.linspace(0, period_count/frequency, total_points).tolist()
-signal_values = [signal(v = 1,frequency=frequency).subs('t', t_val) for t_val in signal_t_points]
-print(ber(signal_t_points,signal_values,channel(signal_t_points,2,frequency,0,1),period_count))
+signal_values = getSignalValues(v,frequency,signal_t_points)
+
+
+print(ber(signal_t_points,signal_values,channel(signal_values,signal_t_points,mean_value,standard_deviation),period_count))

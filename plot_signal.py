@@ -1,11 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
-from my_signal import signal
+from my_signal import getSignalValues, signal
 
-frequency = 10e6
-
-signal_t_points = np.linspace(0, 10/frequency, 2000)
-signal_values = [signal(v = 5,frequency=frequency).subs('t', t_val) for t_val in signal_t_points]
+period_count = 10
+# number of points (2000 here) must be divided by period_count
+total_points = 200 * period_count
+frequency = 1e6
+v = 5
+signal_t_points = np.linspace(0, period_count/frequency, total_points).tolist()
+signal_values = getSignalValues(v,frequency,signal_t_points)
 
 
 plt.figure(figsize=(10, 6))

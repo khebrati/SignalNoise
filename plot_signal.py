@@ -7,8 +7,10 @@ period_count = 10
 total_points = 200 * period_count
 frequency = 1e6
 v = 5
+# 3 : 1min
+bandwidth = float('inf')
 signal_t_points = np.linspace(0, period_count/frequency, total_points).tolist()
-signal_values = getSignalValues(v,frequency,signal_t_points)
+signal_values = getSignalValues(v,frequency,signal_t_points,bandwidth)
 
 
 plt.figure(figsize=(10, 6))

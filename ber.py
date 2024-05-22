@@ -32,6 +32,14 @@ def ber(signal_t_points : list,signal_values : list,noised_signal : list,period_
         print("error count is ",error_count)
     return error_count/len(sampling_points)
 
+def getBerSamples(period_count, frequency, mean_value, standard_deviation, v_values, bandwidth, signal_t_points):
+    ber_values = []
+    for v in v_values:
+        signal_values = getSignalValues(v, frequency, signal_t_points,bandwidth)
+        ber_value = ber(signal_t_points, signal_values, channel(signal_values, signal_t_points, mean_value, standard_deviation), period_count)
+        ber_values.append(ber_value)
+    return ber_values
+
 
 
 period_count = 10
@@ -39,10 +47,11 @@ period_count = 10
 total_points = 200 * period_count
 frequency = 1e6
 v = 1
+bandwidth = float('inf')
 mean_value = 0
 standard_deviation = 1
 signal_t_points = np.linspace(0, period_count/frequency, total_points).tolist()
-signal_values = getSignalValues(v,frequency,signal_t_points)
+signal_values = getSignalValues(v,frequency,signal_t_points,bandwidth)
 
 
 print(ber(signal_t_points,signal_values,channel(signal_values,signal_t_points,mean_value,standard_deviation),period_count))

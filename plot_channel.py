@@ -8,10 +8,11 @@ period_count = 10
 total_points = 200 * period_count
 frequency = 1e6
 v = 5
+bandwidth = float('inf')
 mean_value = 0
 standard_deviation = 1
 signal_t_points = np.linspace(0, period_count/frequency, total_points).tolist()
-signal_values = getSignalValues(v,frequency,signal_t_points)
+signal_values = getSignalValues(v,frequency,signal_t_points,bandwidth)
 
 
 channel_values = channel(signal_values,signal_t_points,mean_value,standard_deviation)
